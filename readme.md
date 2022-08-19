@@ -1,0 +1,1 @@
+### Vite / Typescript / ReactJS / StitchesJS / Eslint / Prettier
