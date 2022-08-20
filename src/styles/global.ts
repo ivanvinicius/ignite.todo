@@ -4,10 +4,12 @@ export const globalStyles = globalCss({
   '*': {
     margin: 0,
     padding: 0,
-    border: `none`,
-    boxSizing: `border-box`
+    border: 'none',
+    boxSizing: 'border-box'
   },
-  body: {
+
+  '#body': {
+    minHeight: '100vh',
     backgroundColor: '$surface',
     color: '$text'
   }

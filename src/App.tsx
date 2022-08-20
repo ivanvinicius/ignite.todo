@@ -1,12 +1,17 @@
-import { lightTheme } from './styles/theme'
 import { globalStyles } from './styles/global'
+import { AppContext } from './context'
+import { Header } from './components/Header'
 
 globalStyles()
 
 export function App() {
   return (
-    <div className={lightTheme}>
-      <h2>Hello World!</h2>
-    </div>
+    <AppContext>
+      <Header />
+      <main>
+        <span>corpo do app</span>
+      </main>
+      <footer>footer</footer>
+    </AppContext>
   )
 }

@@ -25,7 +25,9 @@
   ],
   "rules": {
     "camelcase": "off",
+    "react/jsx-key": "error",
     "react/prop-types": "off",
+    "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
     "space-before-function-paren": "off",
     "react-hooks/rules-of-hooks": "error",
@@ -36,14 +38,6 @@
       {
         "component": true,
         "html": true
-      }
-    ],
-
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto",
-        "singleQuote": true
       }
     ],
 
