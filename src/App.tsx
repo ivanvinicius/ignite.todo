@@ -8,10 +8,6 @@ export function App() {
   return (
     <AppContext>
       <Header />
-      <main>
-        <span>corpo do app</span>
-      </main>
-      <footer>footer</footer>
     </AppContext>
   )
 }

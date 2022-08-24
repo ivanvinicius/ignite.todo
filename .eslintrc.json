@@ -28,6 +28,7 @@
     "react/jsx-key": "error",
     "react/prop-types": "off",
     "prettier/prettier": "error",
+    "no-use-before-define": "off",
     "react/react-in-jsx-scope": "off",
     "space-before-function-paren": "off",
     "react-hooks/rules-of-hooks": "error",

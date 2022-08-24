@@ -1,11 +1,12 @@
-import { RiSunLine, RiMoonLine } from 'react-icons/ri'
+import { RiPantoneLine, RiSunLine, RiMoonLine } from 'react-icons/ri'
 
 import { useTheme } from '../../context/Theme'
 
-import { Container } from './styles'
+import { Container, Box, Logo, ButtonTheme } from './styles'
 
 export function Header() {
   const { darkThemeEnabled, toggleTheme } = useTheme()
+  const themeIcon = darkThemeEnabled ? <RiSunLine /> : <RiMoonLine />
 
   function handleChangeTheme() {
     toggleTheme()
@@ -13,10 +14,22 @@ export function Header() {
 
   return (
     <Container>
-      <h1>ToDo</h1>
-      <button type="button" onClick={handleChangeTheme}>
-        {darkThemeEnabled ? <RiSunLine size={32} /> : <RiMoonLine size={32} />}
-      </button>
+      <Box>
+        <Logo>
+          <RiPantoneLine />
+          <h1>
+            to<span>do</span>
+          </h1>
+        </Logo>
+
+        <ButtonTheme
+          title="Alterar tema escuro/claro"
+          type="button"
+          onClick={handleChangeTheme}
+        >
+          {themeIcon}
+        </ButtonTheme>
+      </Box>
     </Container>
   )
 }
