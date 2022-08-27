@@ -1,12 +1,12 @@
-import { RiPantoneLine, RiSunLine, RiMoonLine } from 'react-icons/ri'
+import { UilReact, UilSun, UilMoon } from '@iconscout/react-unicons'
 
 import { useTheme } from '../../context/Theme'
 
-import { Container, Box, Logo, ButtonTheme } from './styles'
+import { Container, BoxCenter, Logo, ButtonTheme } from './styles'
 
 export function Header() {
   const { darkThemeEnabled, toggleTheme } = useTheme()
-  const themeIcon = darkThemeEnabled ? <RiSunLine /> : <RiMoonLine />
+  const themeIcon = darkThemeEnabled ? <UilSun /> : <UilMoon />
 
   function handleChangeTheme() {
     toggleTheme()
@@ -14,22 +14,22 @@ export function Header() {
 
   return (
     <Container>
-      <Box>
+      <BoxCenter>
         <Logo>
-          <RiPantoneLine />
+          <UilReact />
           <h1>
-            to<span>do</span>
+            reac<span>todo</span>
           </h1>
         </Logo>
 
         <ButtonTheme
-          title="Alterar tema escuro/claro"
+          title="Altarar tema da aplicação."
           type="button"
           onClick={handleChangeTheme}
         >
           {themeIcon}
         </ButtonTheme>
-      </Box>
+      </BoxCenter>
     </Container>
   )
 }

@@ -1,13 +1,13 @@
 import { globalStyles } from './styles/global'
 import { AppContext } from './context'
-import { Header } from './components/Header'
+import { Todo } from './pages/Todo'
 
 globalStyles()
 
 export function App() {
   return (
     <AppContext>
-      <Header />
+      <Todo />
     </AppContext>
   )
 }

@@ -7,11 +7,13 @@ export const globalStyles = globalCss({
     boxSizing: 'border-box'
   },
 
-  html: {
-    fontSize: '100%', // 16px
+  ':focus': {
+    outline: '2px solid $heaven'
+  },
 
+  html: {
     '@tablet': {
-      fontSize: '87.5%' // 14px
+      fontSize: '87.5%'
     }
   },
 

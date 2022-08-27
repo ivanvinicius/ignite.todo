@@ -2,19 +2,22 @@ import { createStitches, createTheme } from '@stitches/react'
 
 export const { styled, globalCss } = createStitches({
   media: {
-    tablet: '(max-width: 790px)'
+    tablet: '(max-width: 768px)'
   },
 
   theme: {
     fonts: {
       roboto: 'Roboto, sans-serif'
     },
+
     fontSizes: {
       12: '0.75rem',
       16: '1rem',
       20: '1.25rem',
-      24: '1.5rem'
+      24: '1.5rem',
+      40: '2.5rem'
     },
+
     fontWeights: {
       regular: '400',
       medium: '500',
@@ -24,13 +27,17 @@ export const { styled, globalCss } = createStitches({
     colors: {
       surface: '#E8E8E8',
       surfacePrimary: '#FFFFFF',
-      description: '#D2D2D2',
+      description: '#a1a1a1',
+      stroke: '#D2D2D2',
       text: '#181818',
+      textInHeaven: '#EBEBEB',
       heaven: '#3089FE',
-      danger: '#E74554'
+      heavenDark: '#007BFF',
+      danger: '#FF605C'
     },
 
     space: {
+      4: '0.25rem',
       8: '0.5rem',
       16: '1rem',
       32: '2rem',
@@ -50,8 +57,11 @@ export const darkTheme = createTheme({
     surface: '#242424',
     surfacePrimary: '#3E3E3E',
     description: '#858585',
+    stroke: '#3E3E3E',
     text: '#EBEBEB',
+    textInHeaven: '#EBEBEB',
     heaven: '#3089FE',
-    danger: '#E74554'
+    heavenDark: '#007BFF',
+    danger: '#FF605C'
   }
 })
