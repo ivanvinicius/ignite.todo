@@ -24,6 +24,6 @@ export const Container = styled('button', {
     background: '$heavenDark'
   },
   '&:focus': {
-    outline: '2px solid $textInHeaven'
+    outline: '2px solid $text'
   }
 })

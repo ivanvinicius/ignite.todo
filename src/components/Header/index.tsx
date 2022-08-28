@@ -23,7 +23,7 @@ export function Header() {
         </Logo>
 
         <ButtonTheme
-          title="Altarar tema da aplicação."
+          title="Altarar tema da aplicação"
           type="button"
           onClick={handleChangeTheme}
         >
