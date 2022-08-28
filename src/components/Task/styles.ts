@@ -33,18 +33,13 @@ export const Label = styled('label', {
 
   'input + &:before': {
     content: '',
-    flex: 'none', // to not resize chechbox by multiple lines
+    flex: 'none', // to not resize checkbox when it has multiple lines
     width: '1.25rem',
     height: '1.25rem',
     marginRight: '$16',
     borderRadius: '$2',
-    border: '2px solid $heaven'
-  },
-  'input:hover + &:before': {
-    backgroundColor: '$gradientHeaven'
-  },
-  'input:focus + &:before': {
-    backgroundColor: '$gradientHeaven'
+    border: '2px solid $heaven',
+    transition: 'all .3s'
   },
   'input:checked + &:before': {
     backgroundColor: '$heaven',
@@ -53,9 +48,17 @@ export const Label = styled('label', {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
   },
-  'input:checked and input:hover + &:before': {
-    border: '2px solid $heavenDark',
+  'input:hover + &:before': {
+    backgroundColor: '$gradientHeaven'
+  },
+  'input:checked:hover + &:before': {
     backgroundColor: '$heavenDark'
+  },
+  'input:focus + &:before': {
+    border: '2px solid $text'
+  },
+  'input:focus:not(:checked) + &:before': {
+    backgroundColor: '$gradientHeaven'
   },
 
   variants: {
