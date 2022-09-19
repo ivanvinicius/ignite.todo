@@ -38,6 +38,7 @@ export function Task({ data }: Props) {
           id={data.id}
           type="checkbox"
           checked={data.done}
+          onChange={() => console.log('onchange')}
           title="Marcar e desmarcar tarefa"
         />
         <Label

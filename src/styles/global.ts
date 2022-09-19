@@ -8,7 +8,7 @@ export const globalStyles = globalCss({
   },
 
   ':focus': {
-    outline: '2px solid $heaven'
+    outline: '1px solid $heaven'
   },
 
   html: {

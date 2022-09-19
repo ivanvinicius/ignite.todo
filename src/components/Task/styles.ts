@@ -87,7 +87,7 @@ export const DeleteButton = styled('button', {
   },
 
   '&:focus': {
-    outline: '2px solid $danger'
+    outline: '1px solid $danger'
   },
   '&:hover': {
     color: '$danger'

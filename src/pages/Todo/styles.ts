@@ -18,7 +18,7 @@ export const Form = styled('form', {
   width: '100%',
   display: 'flex',
   gap: '$16',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   justifyContent: 'space-between'
 })
 
@@ -27,9 +27,10 @@ export const Details = styled('div', {
   width: '100%',
   alignItems: 'center',
   justifyContent: 'space-between',
-  marginTop: '$64',
+  marginTop: 'calc($64 - 1rem)',
 
   span: {
+    display: 'inline-block',
     fontSize: '$14',
     padding: '$8',
     background: '$surfacePrimary',

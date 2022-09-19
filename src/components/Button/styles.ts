@@ -6,7 +6,7 @@ export const Container = styled('button', {
   height: '3.375rem',
   padding: '$16',
   gap: '$4',
-  border: 0,
+  border: 'none',
   borderRadius: '$8',
   fontSize: '$16',
   lineHeight: 0,
@@ -24,6 +24,6 @@ export const Container = styled('button', {
     background: '$heavenDark'
   },
   '&:focus': {
-    outline: '2px solid $text'
+    outline: '1px solid $text'
   }
 })

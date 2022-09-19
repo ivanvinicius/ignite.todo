@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { UilPlus, UilClipboard } from '@iconscout/react-unicons'
 import { useForm, FormProvider } from 'react-hook-form'
+import * as y from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { v4 as uuidv4 } from 'uuid'
 
 import { Button } from '../../components/Button'
 import { Header } from '../../components/Header'
@@ -24,14 +27,22 @@ interface TaskData {
   createdAt: Date
 }
 
-interface TaskInputData {
+interface InputData {
   description: string
 }
+
+const schema = y.object().shape({
+  description: y
+    .string()
+    .required('O campo é obrigatório.')
+    .max(256, 'Máximo de 256 caracteres.')
+})
 
 export function Todo() {
   const [tasks, setTasks] = useState<TaskData[]>([])
   const isMobileMedia = useMatchMedia({ type: 'max', width: 768 })
-  const formMethods = useForm<TaskInputData>({
+  const formMethods = useForm<InputData>({
+    resolver: yupResolver(schema),
     defaultValues: { description: '' }
   })
 
@@ -39,8 +50,17 @@ export function Todo() {
   const hasNoTasks = tasks.length === 0
   const tasksSum = tasks.length
 
-  function handleCreateNewTask(data: TaskInputData) {
-    console.log(data)
+  function handleCreateNewTask({ description }: InputData) {
+    const newTask = {
+      id: uuidv4(),
+      done: false,
+      description,
+      createdAt: new Date()
+    } as TaskData
+
+    setTasks((currentState) => [...currentState, newTask])
+
+    formMethods.reset()
   }
 
   return (
