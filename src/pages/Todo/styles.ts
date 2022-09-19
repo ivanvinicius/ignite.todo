@@ -17,6 +17,7 @@ export const BoxCenter = styled('div', {
 export const Form = styled('form', {
   width: '100%',
   display: 'flex',
+  gap: '$16',
   alignItems: 'center',
   justifyContent: 'space-between'
 })

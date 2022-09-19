@@ -2,8 +2,6 @@ import { InputHTMLAttributes } from 'react'
 
 import { Container } from './styles'
 
-type Props = InputHTMLAttributes<HTMLInputElement>
-
-export function Input({ ...rest }: Props) {
+export function Input({ ...rest }: InputHTMLAttributes<HTMLInputElement>) {
   return <Container {...rest} />
 }

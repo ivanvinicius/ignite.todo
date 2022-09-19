@@ -1,9 +1,10 @@
-import { UilPlus, UilClipboard } from '@iconscout/react-unicons'
 import { useState } from 'react'
+import { UilPlus, UilClipboard } from '@iconscout/react-unicons'
+import { useForm, FormProvider } from 'react-hook-form'
 
 import { Button } from '../../components/Button'
 import { Header } from '../../components/Header'
-import { Input } from '../../components/Input'
+import { ControlledInput } from '../../components/ControlledInput'
 import { Task } from '../../components/Task'
 import { useMatchMedia } from '../../hooks/useMatchMedia'
 
@@ -16,43 +17,49 @@ import {
   EmptyTasksMessageContainer
 } from './styles'
 
-const tasksArr = [
-  {
-    id: '9b1c17d8-c5f1-4854-892a-519f4b0ca175',
-    done: true,
-    description:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores, minus.',
-    createdAt: new Date('2022-08-24T13:02:05.033Z')
-  },
-  {
-    id: '08aa99b2-fc12-40dc-aceb-919a12388ed6',
-    done: false,
-    description:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores, minus.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores, minus.',
-    createdAt: new Date('2022-08-26T19:05:06.033Z')
-  }
-]
+interface TaskData {
+  id: string
+  done: boolean
+  description: string
+  createdAt: Date
+}
+
+interface TaskInputData {
+  description: string
+}
 
 export function Todo() {
-  const [tasks] = useState(tasksArr)
+  const [tasks, setTasks] = useState<TaskData[]>([])
   const isMobileMedia = useMatchMedia({ type: 'max', width: 768 })
+  const formMethods = useForm<TaskInputData>({
+    defaultValues: { description: '' }
+  })
 
   const showButtonText = !isMobileMedia && <strong>Criar</strong>
   const hasNoTasks = tasks.length === 0
   const tasksSum = tasks.length
+
+  function handleCreateNewTask(data: TaskInputData) {
+    console.log(data)
+  }
 
   return (
     <>
       <Header />
       <Main>
         <BoxCenter>
-          <Form>
-            <Input placeholder="Adicione uma nova tarefa" />
-            <Button title="Criar nova tarefa">
-              {showButtonText}
-              <UilPlus />
-            </Button>
-          </Form>
+          <FormProvider {...formMethods}>
+            <Form onSubmit={formMethods.handleSubmit(handleCreateNewTask)}>
+              <ControlledInput
+                name="task"
+                placeholder="Adicione uma nova tarefa"
+              />
+              <Button type="submit" title="Criar nova tarefa">
+                {showButtonText}
+                <UilPlus />
+              </Button>
+            </Form>
+          </FormProvider>
 
           <Details>
             <strong>

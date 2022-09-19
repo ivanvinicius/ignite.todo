@@ -9,7 +9,6 @@ export const Container = styled('input', {
   fontSize: '$16',
   background: '$surfacePrimary',
   borderRadius: '$8',
-  marginRight: '$16',
 
   '&::placeholder': {
     color: '$description'
