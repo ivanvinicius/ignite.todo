@@ -51,7 +51,7 @@ export function Todo() {
           <FormProvider {...formMethods}>
             <Form onSubmit={formMethods.handleSubmit(handleCreateNewTask)}>
               <ControlledInput
-                name="task"
+                name="description"
                 placeholder="Adicione uma nova tarefa"
               />
               <Button type="submit" title="Criar nova tarefa">
