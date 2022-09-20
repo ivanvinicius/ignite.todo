@@ -4,6 +4,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 import * as y from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { v4 as uuidv4 } from 'uuid'
+import { toast } from 'react-toastify'
 
 import { Button } from '../../components/Button'
 import { Header } from '../../components/Header'
@@ -58,9 +59,13 @@ export function Todo() {
       createdAt: new Date()
     } as TaskData
 
-    setTasks((currentState) => [...currentState, newTask])
-
-    formMethods.reset()
+    try {
+      setTasks((currentState) => [...currentState, newTask])
+      toast.success('Nova tarefa criada.')
+      formMethods.reset()
+    } catch {
+      toast.error('Erro ao criar tarefa.')
+    }
   }
 
   return (
