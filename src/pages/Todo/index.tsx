@@ -68,6 +68,16 @@ export function Todo() {
     }
   }
 
+  function deleteTask(taskId: string) {
+    try {
+      const distinctTasks = tasks.filter((task) => task.id !== taskId)
+      setTasks(distinctTasks)
+      toast.success('Tarefa removida')
+    } catch {
+      toast.error('Erro ao remover tarefa')
+    }
+  }
+
   return (
     <>
       <Header />
@@ -105,7 +115,11 @@ export function Todo() {
               </EmptyTasksMessageContainer>
             ) : (
               tasks.map((taskItem) => (
-                <Task key={taskItem.id} data={taskItem} />
+                <Task
+                  key={taskItem.id}
+                  data={taskItem}
+                  onDeleteTask={deleteTask}
+                />
               ))
             )}
           </TasksContainer>

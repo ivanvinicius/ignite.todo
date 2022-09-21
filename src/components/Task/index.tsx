@@ -20,9 +20,10 @@ interface Data {
 
 interface Props {
   data: Data
+  onDeleteTask: (taskId: string) => void
 }
 
-export function Task({ data }: Props) {
+export function Task({ data, onDeleteTask }: Props) {
   const longCreatedAt = format(data.createdAt, "dd 'de' LLLL 'às' HH:mm", {
     locale: ptBR
   })
@@ -30,6 +31,10 @@ export function Task({ data }: Props) {
     locale: ptBR,
     addSuffix: true
   })
+
+  function handleDeleteTask() {
+    onDeleteTask(data.id)
+  }
 
   return (
     <Container>
@@ -48,7 +53,7 @@ export function Task({ data }: Props) {
         >
           {data.description}
         </Label>
-        <DeleteButton title="Deletar tarefa">
+        <DeleteButton onClick={handleDeleteTask} title="Remover tarefa">
           <UilTimes />
         </DeleteButton>
       </Wrapper>
