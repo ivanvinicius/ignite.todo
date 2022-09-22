@@ -21,9 +21,10 @@ interface Data {
 interface Props {
   data: Data
   onDeleteTask: (taskId: string) => void
+  onToggleTaskAsDone: (taskId: string) => void
 }
 
-export function Task({ data, onDeleteTask }: Props) {
+export function Task({ data, onDeleteTask, onToggleTaskAsDone }: Props) {
   const longCreatedAt = format(data.createdAt, "dd 'de' LLLL 'às' HH:mm", {
     locale: ptBR
   })
@@ -36,6 +37,10 @@ export function Task({ data, onDeleteTask }: Props) {
     onDeleteTask(data.id)
   }
 
+  function handleToggleTaskAsDone() {
+    onToggleTaskAsDone(data.id)
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -43,7 +48,7 @@ export function Task({ data, onDeleteTask }: Props) {
           id={data.id}
           type="checkbox"
           checked={data.done}
-          onChange={() => console.log('onchange')}
+          onChange={handleToggleTaskAsDone}
           title="Marcar e desmarcar tarefa"
         />
         <Label

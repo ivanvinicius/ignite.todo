@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { UilPlus, UilClipboard } from '@iconscout/react-unicons'
 import { useForm, FormProvider } from 'react-hook-form'
 import * as y from 'yup'
@@ -32,6 +32,8 @@ interface InputData {
   description: string
 }
 
+const collectionName = '@todo:tasks'
+
 const schema = y.object().shape({
   description: y
     .string()
@@ -40,7 +42,23 @@ const schema = y.object().shape({
 })
 
 export function Todo() {
-  const [tasks, setTasks] = useState<TaskData[]>([])
+  const [tasks, setTasks] = useState<TaskData[]>(() => {
+    const retrivedTasks = localStorage.getItem(collectionName)
+
+    if (retrivedTasks !== null) {
+      const parsedTasks = JSON.parse(retrivedTasks)
+
+      const normalizedTasks = parsedTasks.map((task: TaskData) => ({
+        ...task,
+        createdAt: new Date(task.createdAt)
+      }))
+
+      return normalizedTasks
+    }
+
+    return []
+  })
+
   const isMobileMedia = useMatchMedia({ type: 'max', width: 768 })
   const formMethods = useForm<InputData>({
     resolver: yupResolver(schema),
@@ -50,6 +68,10 @@ export function Todo() {
   const showButtonText = !isMobileMedia && <strong>Criar</strong>
   const hasNoTasks = tasks.length === 0
   const tasksSum = tasks.length
+  const sumTasksAlreadyDone = tasks.reduce((acc, task) => {
+    if (task.done) acc++
+    return acc
+  }, 0)
 
   function handleCreateNewTask({ description }: InputData) {
     const newTask = {
@@ -61,8 +83,8 @@ export function Todo() {
 
     try {
       setTasks((currentState) => [...currentState, newTask])
-      toast.success('Tarefa criada')
       formMethods.reset()
+      toast.success('Tarefa criada')
     } catch {
       toast.error('Erro ao criar tarefa')
     }
@@ -77,6 +99,24 @@ export function Todo() {
       toast.error('Erro ao remover tarefa')
     }
   }
+
+  function toggleTaskAsDone(taskId: string) {
+    const updatedTasks = tasks.map((currentTask) => {
+      if (currentTask.id === taskId) {
+        return {
+          ...currentTask,
+          done: !currentTask.done
+        }
+      }
+      return currentTask
+    })
+
+    setTasks(updatedTasks)
+  }
+
+  useEffect(() => {
+    localStorage.setItem(collectionName, JSON.stringify(tasks))
+  }, [tasks])
 
   return (
     <>
@@ -102,7 +142,11 @@ export function Todo() {
             </strong>
             <strong>
               Concluídas{' '}
-              {tasksSum !== 0 ? <span>1 de {tasksSum}</span> : <span>0</span>}
+              {tasksSum !== 0 ? (
+                <span>{`${sumTasksAlreadyDone} de ${tasksSum}`}</span>
+              ) : (
+                <span>0</span>
+              )}
             </strong>
           </Details>
 
@@ -119,6 +163,7 @@ export function Todo() {
                   key={taskItem.id}
                   data={taskItem}
                   onDeleteTask={deleteTask}
+                  onToggleTaskAsDone={toggleTaskAsDone}
                 />
               ))
             )}

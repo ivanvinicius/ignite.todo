@@ -91,6 +91,11 @@ export const DeleteButton = styled('button', {
   },
   '&:hover': {
     color: '$danger'
+  },
+
+  '@tablet': {
+    padding: '$4',
+    paddingTop: '0'
   }
 })
 
