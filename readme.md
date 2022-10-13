@@ -21,7 +21,7 @@
 </div>
 <div align="center">
   <h3>
-    <a href="https://ivantodo.netlify.app/">Ver projeto no Netlify</a>
+    <a href="https://ignite-challenge-todo.netlify.app/">Ver projeto no Netlify</a>
   </h3>
 </div>
 
